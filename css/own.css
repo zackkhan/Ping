@@ -17,7 +17,8 @@ p{
     color: white;
     border: none;
     background-color: #F09F9F;
-    line-height: 1.8rem;
+    line-height: 3rem;
+    font-size: 20px;
     
 }
 
@@ -40,7 +41,8 @@ p{
 .submit-button {
     display: inline;
     width: auto;
-    line-height: 1.8rem;
+    line-height: 3rem;
+    font-size: 20px;
     border: none;
     background-color: #1A83FF;
     color: #ffffff;
@@ -68,6 +70,11 @@ p{
     #email {
         width:100%;
         margin-bottom:5px;
+    }
+
+    .blah {
+        font-size: 1.8rem;
+        line-height: 2rem;
     }
   }
 
