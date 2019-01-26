@@ -22,6 +22,21 @@ p{
     
 }
 
+#emailblue{
+    width: 40%;
+    /* border-color: #F09F9F; */
+    box-shadow: none;
+    border-radius: 2px;
+    color: white;
+    border: none;
+    background-color: #1A83FF;
+    line-height: 3rem;
+    font-size: 20px;
+    
+}
+
+
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     padding-left: 5px;
@@ -45,6 +60,17 @@ p{
     font-size: 20px;
     border: none;
     background-color: #1A83FF;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+.submit-buttonpink {
+    display: inline;
+    width: auto;
+    line-height: 3rem;
+    font-size: 20px;
+    border: none;
+    background-color: #F09F9F;
     color: #ffffff;
     border-radius: 4px;
 }

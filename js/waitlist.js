@@ -1,4 +1,9 @@
 var waitlistData = JSON.parse( localStorage.getItem('waitlistData'));
+var referrerCode = localStorage.getItem('code');
+if (referrerCode != null){
+    
+    // increment all positions of people after the referrer
+}
 console.log("hello");
 console.log(waitlistData);
 $("#position").text(waitlistData.position.toString());
@@ -18,3 +23,30 @@ function copyToClipboard(element) {
     document.execCommand("copy");
     $temp.remove();
   }
+
+function getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      if (/windows phone/i.test(userAgent)) {
+          return "Windows Phone";
+      }
+      if (/android/i.test(userAgent)) {
+          return "Android";
+      }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "iOS";
+      }
+  
+      return "unknown";
+}
+var mobile_os = getMobileOperatingSystem()
+
+if (mobile_os == "Android"){
+    $("#shareMobile").prop('href', "sms:?body=Improve your personal relationships with Ping. Reimagine relationships at " + link);
+} else if (mobile_os == "iOS"){
+    $("#shareMobile").prop('href', "sms:&body=Improve your personal relationships with Ping. Reimagine relationships at " + link)
+}
+
+$(document).ready(function() {
+// do the 
+
+})
