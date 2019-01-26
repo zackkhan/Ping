@@ -19,7 +19,7 @@ $('#arrow').on("click", event => {
       }, 800);    
  })
 
-var superman_array = ["friend", "husband", "wife", "father", "son", "uncle", "human", "aunt"]
+var superman_array = ["friend", "co-worker", "husband", "wife", "father", "son", "uncle", "human", "aunt"]
 var header_array = ["\"Love you\" text to Grandma that will make her day ❤️", "\"Coffee?\" text to your co-worker that will uncover a shared interested in salsa 💃", "\"Movie night?\" text to your old friend that will rekindle past memories 🍿"]
 var quoteIndex = 0;
     
