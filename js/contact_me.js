@@ -63,7 +63,7 @@ $.ajax({
         type: "POST",
         url: "https://pingpersonal-server.herokuapp.com/waitlist",
         // "https://newfriendserver.herokuapp.com/email",
-        data: {email: $('#email').val()}, // serializes the form's elements.
+        data: {email: $('#emailblue').val()}, // serializes the form's elements.
         success: function(data){
         localStorage.setItem('waitlistData', JSON.stringify(data)); 
             console.log(data);
