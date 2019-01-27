@@ -35,7 +35,7 @@ function setPage() {
 
 var code = $.urlParam('code')
 if (code != null){
-    console.log(code);
+    // console.log(code);
 $.ajax({
         type: "POST",
         url: "https://pingpersonal-server.herokuapp.com/getwaitlist",
@@ -43,7 +43,7 @@ $.ajax({
         // "https://newfriendserver.herokuapp.com/email",
         data: {referralCode: code }, 
         success: function(data){ 
-            console.log(data);   
+            // console.log(data);   
             waitlistData = data;
             setPage();
         }, 
@@ -69,8 +69,8 @@ if (referrerCode != null){
     //     });
     // increment all positions of people after the referrer
 }
-console.log("hello");
-console.log(waitlistData);
+// console.log("hello");
+// console.log(waitlistData);
 
 function copyToClipboard(element) {
     var $temp = $("<input>");
