@@ -80,17 +80,19 @@ jQuery.ajaxSetup({
       console.log("button clicked")
       var email = $('#emailblue').val();
       var referrerCode = $.urlParam('code');
-      if (validateEmail(email)){
+      if (validateEmail(email) && referrerCode != null){
         $.ajax({
             type: "POST",
-            url: "https://83314d77.ngrok.io/referral",
+            url: "https://pingpersonal-server.herokuapp.com/referral",
             //"https://pingpersonal-server.herokuapp.com/referral",
             // "https://newfriendserver.herokuapp.com/email",
             data: {referralCode: referrerCode, email: email }, 
             success: function(data){
+                console.log("SUCCESSS");
+                // debugger;
                 $.ajax({
                     type: "POST",
-                    url: "https://83314d77.ngrok.io/waitlist",
+                    url: "https://pingpersonal-server.herokuapp.com/waitlist",
                     // "https://pingpersonal-server.herokuapp.com/waitlist",
                     // "https://newfriendserver.herokuapp.com/email",
                     data: {email: $('#emailblue').val()}, // serializes the form's elements.
@@ -102,9 +104,29 @@ jQuery.ajaxSetup({
                         window.location.href = "waitlist.html";           
                     }
                     });        
-            }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("ERROR");
+                // debugger;
+                alert("This email is invalid. Please try another email!")
+              }
             });
-      } else {
+      }  else if (validateEmail(email) && referrerCode == null) {
+        $.ajax({
+            type: "POST",
+            url: "https://pingpersonal-server.herokuapp.com/waitlist",
+            // "https://pingpersonal-server.herokuapp.com/waitlist",
+            // "https://newfriendserver.herokuapp.com/email",
+            data: {email: $('#emailblue').val()}, // serializes the form's elements.
+            success: function(data){
+            console.log(data);
+            // debugger;
+            localStorage.setItem('waitlistData', JSON.stringify(data)); 
+                console.log(data);
+                window.location.href = "waitlist.html";           
+            }
+            });  
+     } else {
           alert("Please enter a valid email address")
       }
 
