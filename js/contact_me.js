@@ -1,11 +1,22 @@
 $.urlParam = function(name){
 	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	return results[1] || 0;
+    if (results == null) {
+        return null
+    } else 
+    return results[1] || 0;
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
 
 $(document).ready(function() {
     var code = $.urlParam('code');
-    localStorage.setItem('code', code);     
+    if (code){
+        localStorage.setItem('code', code);     
+        console.log(code)
+    }
 })
 
 function randomIntFromInterval(min,max) // min and max included
@@ -23,7 +34,6 @@ var superman_array = ["friend", "co-worker", "husband", "wife", "father", "son",
 var header_array = ["\"Love you\" text to Grandma that will make her day ❤️", "\"Coffee?\" text to your co-worker that will uncover a shared interested in salsa 💃", "\"Movie night?\" text to your old friend that will rekindle past memories 🍿"]
 var quoteIndex = 0;
     
-
 function showNextQuote() {
     if (quoteIndex == header_array.length){
         quoteIndex = 0;
@@ -55,21 +65,50 @@ $("#thing")
 }
 showNextSupermanQuote();
 
+jQuery.ajaxSetup({
+    beforeSend: function() {
+        $('#loader').text("Loading...");
+       $('#loader').show();
+    },
+    complete: function(){
+       $('#loader').hide();
+    },
+    success: function() {}
+  });
 
+  $("#submit-button").click(function(){
+      console.log("button clicked")
+      var email = $('#emailblue').val();
+      var referrerCode = $.urlParam('code');
+      if (validateEmail(email)){
+        $.ajax({
+            type: "POST",
+            url: "https://83314d77.ngrok.io/referral",
+            //"https://pingpersonal-server.herokuapp.com/referral",
+            // "https://newfriendserver.herokuapp.com/email",
+            data: {referralCode: referrerCode, email: email }, 
+            success: function(data){
+                $.ajax({
+                    type: "POST",
+                    url: "https://83314d77.ngrok.io/waitlist",
+                    // "https://pingpersonal-server.herokuapp.com/waitlist",
+                    // "https://newfriendserver.herokuapp.com/email",
+                    data: {email: $('#emailblue').val()}, // serializes the form's elements.
+                    success: function(data){
+                    console.log(data);
+                    // debugger;
+                    localStorage.setItem('waitlistData', JSON.stringify(data)); 
+                        console.log(data);
+                        window.location.href = "waitlist.html";           
+                    }
+                    });        
+            }
+            });
+      } else {
+          alert("Please enter a valid email address")
+      }
+
+  })
 $("#email-form").submit(function(e) {
-var form = $(this);
-// var url = form.attr('action');
-$.ajax({
-        type: "POST",
-        url: "https://pingpersonal-server.herokuapp.com/waitlist",
-        // "https://newfriendserver.herokuapp.com/email",
-        data: {email: $('#emailblue').val()}, // serializes the form's elements.
-        success: function(data){
-        localStorage.setItem('waitlistData', JSON.stringify(data)); 
-            console.log(data);
-            window.location.href = "waitlist.html";           
-        }
-        });
-
 e.preventDefault(); // avoid to execute the actual submit of the form.
 });

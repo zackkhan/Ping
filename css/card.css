@@ -47,7 +47,7 @@ body {
   font-weight: 300;
   line-height: 22px;
   letter-spacing: .4px;
-  background: #F09F9F;
+  background: #1A83FF;
   padding-top: 30px;
 }
 
@@ -66,22 +66,29 @@ body {
   margin-bottom: 54px;
 }
 
+@media (max-width: 991px) {
 .image {
-  height: 200px;
-  opacity: .7;
-  overflow: hidden;
-  transition: all .2s ease-in-out;
+  width: 100%;
+}
 }
 
-.image:hover,
+.image {
+  text-align: center;
+  width: 50%;
+  /* height: 200px;
+  opacity: .7;
+  overflow: hidden; */
+}
+
+/* .image:hover,
 .card:hover .image {
   height: 200px;
   opacity: 1;
-}
+} */
 
 .text {
   background: #FFF;
-  padding: 20px;
+  padding-bottom: 20px;
   min-height: 200px;
 }
 

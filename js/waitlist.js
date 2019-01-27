@@ -1,7 +1,15 @@
 var waitlistData = JSON.parse( localStorage.getItem('waitlistData'));
 var referrerCode = localStorage.getItem('code');
 if (referrerCode != null){
-    
+    // $.ajax({
+    //     type: "POST",
+    //     url: "https://83314d77.ngrok.io/referral",
+    //     //"https://pingpersonal-server.herokuapp.com/referral",
+    //     // "https://newfriendserver.herokuapp.com/email",
+    //     data: {referralCode: referrerCode, email: waitlistData.email }, 
+    //     success: function(data){        
+    //     }
+    //     });
     // increment all positions of people after the referrer
 }
 console.log("hello");
